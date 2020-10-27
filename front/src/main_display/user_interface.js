@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -18,7 +18,6 @@ const Interface = () => {
 		  .then(res=>{
 			console.log(res);
 			console.log(res.data);
-			window.location = "/retrieve" //This line of code will redirect you once the submission is succeed
 		  })
 		  .catch(err=>{
 			  alert(err);
@@ -34,25 +33,24 @@ const Interface = () => {
 		  .then(res=>{
 			console.log(res);
 			console.log(res.data);
-			window.location = "/retrieve" //This line of code will redirect you once the submission is succeed
 		  })
 		  .catch(err=>{
 			  alert(err);
 		  })
 		*/
 	}
-	
-	const handleChange = event =>{
+
+	const handleChange = event => {
 		setInputText(event.target.value);
 	}
 
 	return (
 		<div>
-      	  <form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<Container>
-					<Row className="justify-content-md-center" style={{marginBottom:30}}>
+					<Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
 						<Col md="auto">
-							<input type="text" onChange={handleChange} value={inputText}/>
+							<input type="text" onChange={handleChange} value={inputText} />
 						</Col>
 					</Row>
 					<Row className="justify-content-md-center">
