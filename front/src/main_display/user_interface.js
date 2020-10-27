@@ -1,36 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import axios from 'axios';
 
-const handleSubmit = event => {
-	event.preventDefault();
-    const user = {
-      name: this.state.name
-    }
-    axios.post('https://jsonplaceholder.typicode.com/users', { user })
-      .then(res=>{
-        console.log(res);
-        console.log(res.data);
-        window.location = "/retrieve" //This line of code will redirect you once the submission is succeed
-      })
-}
+
 
 
 
 const Interface = () => {
+	const [inputText, setInputText] = useState("Input String");
+	const handleSubmit = event => {
+		event.preventDefault();
+
+		/*
+		const user = {
+		  name: this.state.name
+		}
+		axios.post('https://jsonplaceholder.typicode.com/users', { user })
+		  .then(res=>{
+			console.log(res);
+			console.log(res.data);
+			window.location = "/retrieve" //This line of code will redirect you once the submission is succeed
+		  })
+		*/
+	}
+	
+	const handleChange = event =>{
+		setInputText(event.target.value);
+	}
 	return (
 		<div>
-			<Form onSubmit = {handleSubmit}>
+      	  <form onSubmit={handleSubmit}>
 				<Container>
-					<Row className="justify-content-md-center">
+					<Row className="justify-content-md-center" style={{marginBottom:30}}>
 						<Col md="auto">
-							<Form.Group controlId="formBasicInput">
-								<Form.Control type="text" placeholder="Input string" />
-							</Form.Group>
+							<input type="text" onChange={handleChange} value={inputText}/>
 						</Col>
 					</Row>
 					<Row className="justify-content-md-center">
@@ -46,7 +52,7 @@ const Interface = () => {
 						</Col>
 					</Row>
 				</Container>
-			</Form>
+			</form>
 		</div>
 	)
 }
