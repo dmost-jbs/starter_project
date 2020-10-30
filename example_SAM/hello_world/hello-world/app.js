@@ -30,6 +30,21 @@ exports.lambdaHandler = async (event, context) => {
 
         // const ret = await axios(url);
         if (event.httpMethod == 'POST') {
+            var params = {
+                Body: "test test test string", 
+                Bucket: 'most-starter', 
+                Key: "test_object.jpg"
+               };
+               s3.putObject(params, function(err, data) {
+                // an error occurred
+                 if (err) {
+                     console.log(err, err.stack); 
+                 }
+                // successful response
+                 else{
+                    console.log(data);   
+                 }             
+            });
             response = {
                 'statusCode': 200,
                 'body': JSON.stringify({
