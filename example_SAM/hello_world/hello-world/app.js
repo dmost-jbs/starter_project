@@ -19,35 +19,25 @@ exports.lambdaHandler = async (event, context) => {
         console.log(event)
         console.log(context)
         // const ret = await axios(url);
-        if (event.path == '/api/') {
-            if (event.httpMethod == 'POST') {
-                response = {
-                    'statusCode': 200,
-                    'body': JSON.stringify({
-                        message: 'post endpoint',
-                        // location: ret.data.trim()
-                    })
-                }
-            }
-            if (event.httpMethod == 'GET') {
-                response = {
-                    'statusCode': 200,
-                    'body': JSON.stringify({
-                        message: 'get endpoint',
-                        // location: ret.data.trim()
-                    })
-                }
-            }
-        }
-        else {
+        if (event.httpMethod == 'POST') {
             response = {
                 'statusCode': 200,
                 'body': JSON.stringify({
-                    message: 'invalid directory',
+                    message: 'post endpoint',
                     // location: ret.data.trim()
                 })
             }
         }
+        if (event.httpMethod == 'GET') {
+            response = {
+                'statusCode': 200,
+                'body': JSON.stringify({
+                    message: 'get endpoint',
+                    // location: ret.data.trim()
+                })
+            }
+        }
+        
 
     } catch (err) {
         console.log(err);
