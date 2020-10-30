@@ -18,11 +18,17 @@ Resources:
       Handler: app.lambdaHandler
       Runtime: nodejs12.x
       Events:
-        HelloWorld:
+        GetObject:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /api
+            Path: /api/get
             Method: get
+        PutObject:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /api/post
+            Method: post
+
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
