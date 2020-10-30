@@ -25,34 +25,38 @@ exports.lambdaHandler = async (event, context) => {
     try {
         console.log(event)
         console.log(context)
-        var Bucket = 'most-starter';
-        var Key = 'test.txt';
+        let Bucket = 'most-starter';
+        let Key = 'test.txt';
+        let message = 'test string here'
 
         // const ret = await axios(url);
         if (event.httpMethod == 'POST') {
-            /*
-            var params = {
-                Body: "test test test string", 
+            let params = {
+                Body: message, 
                 Bucket: 'most-starter', 
-                Key: "test_object.jpg"
-               };
-               s3.putObject(params, function(err, data) {
-                // an error occurred
-                 if (err) {
-                     console.log(err, err.stack); 
-                 }
-                // successful response
-                 else{
-                    console.log(data);   
-                 }             
-            });
-            */
-            response = {
-                'statusCode': 200,
-                'body': JSON.stringify({
-                    message: 'post endpoint',
-                    // location: ret.data.trim()
-                })
+                Key: "test_object.txt"
+            };
+            try{
+                const in_data = await s3.putObject(params).promise();
+                console.log('object: ');
+                console.log(in_data);
+                response = {
+                    'statusCode': 200,
+                    'body': JSON.stringify({
+                        'message':  message,
+                        'ETag': in_data['ETag']
+                        // location: ret.data.trim()
+                    })
+                }
+            }
+            catch(err){
+                response = {
+                    'statusCode': 500,
+                    'body': JSON.stringify({
+                        message:  err.toString()
+                        // location: ret.data.trim()
+                    })
+                }
             }
             return response;
         }
