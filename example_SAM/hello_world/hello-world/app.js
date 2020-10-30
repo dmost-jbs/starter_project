@@ -30,6 +30,7 @@ exports.lambdaHandler = async (event, context) => {
 
         // const ret = await axios(url);
         if (event.httpMethod == 'POST') {
+            /*
             var params = {
                 Body: "test test test string", 
                 Bucket: 'most-starter', 
@@ -45,6 +46,7 @@ exports.lambdaHandler = async (event, context) => {
                     console.log(data);   
                  }             
             });
+            */
             response = {
                 'statusCode': 200,
                 'body': JSON.stringify({
@@ -52,6 +54,7 @@ exports.lambdaHandler = async (event, context) => {
                     // location: ret.data.trim()
                 })
             }
+            return response;
         }
         if (event.httpMethod == 'GET') {
             const data = await s3.getObject({ Bucket, Key }).promise();
