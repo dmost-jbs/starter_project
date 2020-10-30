@@ -39,10 +39,7 @@ exports.lambdaHandler = async (event, context) => {
             }
         }
         if (event.httpMethod == 'GET') {
-              const data = await s3.getObject({ Bucket, Key }).promise();
-
-            console.log("Raw text:\n" + data.Body.toString('ascii'));
-
+            const data = await s3.getObject({ Bucket, Key }).promise();
             response = {
                 'statusCode': 200,
                 'body': JSON.stringify({
@@ -51,7 +48,6 @@ exports.lambdaHandler = async (event, context) => {
                 })
             }
             return response
-
         }
     }
     catch (err) {
