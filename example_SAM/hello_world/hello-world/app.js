@@ -23,23 +23,19 @@ const s3 = new AWS.S3()
  */
 exports.lambdaHandler = async (event, context) => {
     try {
-        console.log(event)
-        console.log(context)
-        let Bucket = 'most-starter';
-        let Key = 'test.txt';
-        let message = JSON.parse(event.body)['message']
-
         // const ret = await axios(url);
         if (event.httpMethod == 'POST') {
+            let Bucket = 'most-starter';
+            let Key = 'test.txt';
+            let message = JSON.parse(event.body)['message']
+
             let params = {
                 Body: message, 
                 Bucket: 'most-starter', 
-                Key: "test_object.txt"
+                Key: "message.txt"
             };
             try{
                 const in_data = await s3.putObject(params).promise();
-                console.log('object: ');
-                console.log(in_data);
                 response = {
                     'statusCode': 200,
                     'body': JSON.stringify({
@@ -60,15 +56,28 @@ exports.lambdaHandler = async (event, context) => {
             return response;
         }
         if (event.httpMethod == 'GET') {
-            const data = await s3.getObject({ Bucket, Key }).promise();
-            response = {
-                'statusCode': 200,
-                'body': JSON.stringify({
-                    message: data.Body.toString('ascii'),
-                    // location: ret.data.trim()
-                })
+            let Bucket = 'most-starter';
+            let Key = 'message.txt';
+            try{
+                const data = await s3.getObject({ Bucket, Key }).promise();
+                response = {
+                    'statusCode': 200,
+                    'body': JSON.stringify({
+                        message: data.Body.toString('ascii'),
+                        // location: ret.data.trim()
+                    })
+                }
+                return response
             }
-            return response
+            catch (err){
+                response = {
+                    'statusCode': 200,
+                    'body': JSON.stringify({
+                        message: 'Error reading latest text',
+                        // location: ret.data.trim()
+                    })
+                }
+            }
         }
     }
     catch (err) {
