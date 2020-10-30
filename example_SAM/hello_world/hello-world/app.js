@@ -27,7 +27,7 @@ exports.lambdaHandler = async (event, context) => {
         console.log(context)
         let Bucket = 'most-starter';
         let Key = 'test.txt';
-        let message = 'test string here'
+        let message = JSON.parse(event.body)['message']
 
         // const ret = await axios(url);
         if (event.httpMethod == 'POST') {
@@ -44,8 +44,7 @@ exports.lambdaHandler = async (event, context) => {
                     'statusCode': 200,
                     'body': JSON.stringify({
                         'message':  message,
-                        'ETag': in_data['ETag']
-                        // location: ret.data.trim()
+                        'ETag': in_data['ETag'],
                     })
                 }
             }
