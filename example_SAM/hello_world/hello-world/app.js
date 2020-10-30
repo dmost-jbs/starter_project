@@ -5,8 +5,6 @@ let response;
 
 // dependencies
 const AWS = require('aws-sdk');
-const util = require('util');
-const sharp = require('sharp');
 
 // get reference to S3 client
 const s3 = new AWS.S3()
@@ -27,21 +25,9 @@ exports.lambdaHandler = async (event, context) => {
     try {
         console.log(event)
         console.log(context)
-        var src_bkt = event.Records[0].s3.bucket.name;
-        var src_key = event.Records[0].s3.object.key;
-        let test = s3.getObject({
-            Bucket: src_bkt,
-            Key: src_key
-        }, function (err, data) {
-            if (err) {
-                console.log(err, err.stack);
-                callback(err);
-            } else {
-                console.log("Raw text:\n" + data.Body.toString('ascii'));
-                callback(null, null);
-            }
-        });
-        console.log(test)
+        var Bucket = 'most-starter';
+        var Key = 'test.txt';
+
         // const ret = await axios(url);
         if (event.httpMethod == 'POST') {
             response = {
@@ -53,20 +39,22 @@ exports.lambdaHandler = async (event, context) => {
             }
         }
         if (event.httpMethod == 'GET') {
+              const data = await s3.getObject({ Bucket, Key }).promise();
+
+            console.log("Raw text:\n" + data.Body.toString('ascii'));
+
             response = {
                 'statusCode': 200,
                 'body': JSON.stringify({
-                    message: 'get endpoint',
+                    message: data.Body.toString('ascii'),
                     // location: ret.data.trim()
                 })
             }
+            return response
+
         }
-
-
-    } catch (err) {
-        console.log(err);
-        return err;
     }
-
-    return response
+    catch (err) {
+        console.log(err);
+    }
 };
