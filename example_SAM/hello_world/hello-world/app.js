@@ -30,16 +30,17 @@ exports.lambdaHandler = async (event, context) => {
         var src_bkt = event.Records[0].s3.bucket.name;
         var src_key = event.Records[0].s3.object.key;
         let test = s3.getObject({
-        Bucket: src_bkt,
-        Key: src_key
-    }, function(err, data) {
-        if (err) {
-            console.log(err, err.stack);
-            callback(err);
-        } else {
-            console.log("Raw text:\n" + data.Body.toString('ascii'));
-            callback(null, null);
-        }
+            Bucket: src_bkt,
+            Key: src_key
+        }, function (err, data) {
+            if (err) {
+                console.log(err, err.stack);
+                callback(err);
+            } else {
+                console.log("Raw text:\n" + data.Body.toString('ascii'));
+                callback(null, null);
+            }
+        });
         console.log(test)
         // const ret = await axios(url);
         if (event.httpMethod == 'POST') {
@@ -60,7 +61,7 @@ exports.lambdaHandler = async (event, context) => {
                 })
             }
         }
-        
+
 
     } catch (err) {
         console.log(err);
