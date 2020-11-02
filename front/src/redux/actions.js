@@ -17,10 +17,7 @@ export const registerUser = (username,password,email) => ({
    }
 });
 
-export const logoutUser = (username) => ({
+export const logoutUser = () => ({
     type: LOGOUT_USER,
-    payload: { 
-        'username':username,
-     }
-  });
+});
 
