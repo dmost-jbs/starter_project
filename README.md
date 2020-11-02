@@ -11,7 +11,7 @@ Node server GET: https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api
 Node server POST: https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/post
 
 POST data format: {
-    "message": <String>
+    "message": \<String\>
 }
 
 
