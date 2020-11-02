@@ -4,11 +4,14 @@
 Starting project that implements a post/get request handler via AWS Lambda which stores state in AWS S3. React front which interacts with AWS Lambdas via the Axios Library
 
 
-Node server GET: https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/get
+Node server GET: https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/get \n
+
+
+
 Node server POST: https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/post
 
-post data format: {
-    "message": <String>
+POST data format: {
+    "message": \<String\>
 }
 
 
