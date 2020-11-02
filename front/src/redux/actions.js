@@ -24,4 +24,3 @@ export const logoutUser = (username) => ({
      }
   });
 
-export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });

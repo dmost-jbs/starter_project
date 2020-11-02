@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
+import { connect } from "react-redux";
 
 
 /**
@@ -95,7 +96,7 @@ const mapStateToProps = (state) => ({
     mapDispatchToProps
   )
   // and that function returns the connected, wrapper component:
-  const ConnectedComponent = connectToStore(Component)
+  const ConnectedComponent = connectToStore(Login)
   
   // We normally do both in one step, like this:
   export default connect(
