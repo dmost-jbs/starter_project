@@ -30,25 +30,35 @@ exports.lambdaHandler = async (event, context) => {
             let message = JSON.parse(event.body)['message']
 
             let params = {
-                Body: message, 
-                Bucket: 'most-starter', 
+                Body: message,
+                Bucket: 'most-starter',
                 Key: "message.txt"
             };
-            try{
+            try {
                 const in_data = await s3.putObject(params).promise();
                 response = {
                     'statusCode': 200,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "Content-Type",
+                        "Access-Control-Allow-Methods": "OPTIONS,GET"
+                    },
                     'body': JSON.stringify({
-                        'message':  message,
+                        'message': message,
                         'ETag': in_data['ETag'],
                     })
                 }
             }
-            catch(err){
+            catch (err) {
                 response = {
                     'statusCode': 500,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "Content-Type",
+                        "Access-Control-Allow-Methods": "OPTIONS,GET"
+                    },
                     'body': JSON.stringify({
-                        message:  err.toString()
+                        message: err.toString()
                         // location: ret.data.trim()
                     })
                 }
@@ -58,10 +68,15 @@ exports.lambdaHandler = async (event, context) => {
         if (event.httpMethod == 'GET') {
             let Bucket = 'most-starter';
             let Key = 'message.txt';
-            try{
+            try {
                 const data = await s3.getObject({ Bucket, Key }).promise();
                 response = {
                     'statusCode': 200,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "Content-Type",
+                        "Access-Control-Allow-Methods": "OPTIONS,GET"
+                    },
                     'body': JSON.stringify({
                         message: data.Body.toString('ascii'),
                         // location: ret.data.trim()
@@ -69,9 +84,14 @@ exports.lambdaHandler = async (event, context) => {
                 }
                 return response
             }
-            catch (err){
+            catch (err) {
                 response = {
                     'statusCode': 200,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "Content-Type",
+                        "Access-Control-Allow-Methods": "OPTIONS,GET"
+                    },
                     'body': JSON.stringify({
                         message: 'Error reading latest text',
                         // location: ret.data.trim()
