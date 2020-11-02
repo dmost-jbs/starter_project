@@ -5,39 +5,42 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import axios from 'axios';
 
-const aws_post_url = "";
-const aws_get_url = "";
+const aws_post_url = "https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/post";
+const aws_get_url = "https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/get";
 
 const Interface = () => {
 	const [inputText, setInputText] = useState("Input String");
+	const [serverText, setServerText] = useState("");
 	const handleSubmit = event => {
 		event.preventDefault();
 
-		/*
 		axios.post(aws_post_url, { text: inputText })
 		  .then(res=>{
 			console.log(res);
 			console.log(res.data);
+			alert(`message ${res.data} successfully saved on server`)
 		  })
 		  .catch(err=>{
 			  alert(err);
 		  })
-		*/
+
 	}
 
 	const handleGet = event => {
 		event.preventDefault();
 
-		/*
+
 		axios.get(aws_get_url)
 		  .then(res=>{
 			console.log(res);
 			console.log(res.data);
+			setServerText(res.data.message)
+
 		  })
 		  .catch(err=>{
 			  alert(err);
 		  })
-		*/
+
 	}
 
 	const handleChange = event => {
@@ -63,6 +66,11 @@ const Interface = () => {
 							<Button variant="primary" type="button" onClick={handleGet}>
 								Retrieve
 							</Button>
+						</Col>
+					</Row>
+					<Row className="justify-content-md-center">
+						<Col md="auto">
+							<h1>{serverText}</h1>
 						</Col>
 					</Row>
 				</Container>
