@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
 import {loginUser} from '../redux/actions';
+import store from '../redux/store';
 
 
 /**
@@ -31,7 +32,8 @@ const Login = (props) => {
         `)
         // login logic here
 
-        loginUser({usernameText,passwordText});
+        props.loginUser({usernameText,passwordText});
+        console.log(store.getState());
 
     }
 
@@ -91,4 +93,5 @@ const mapStateToProps = (state) => ({
   })
   export default connect(
     mapStateToProps,
+    {loginUser}
   )(Login)

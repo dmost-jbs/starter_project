@@ -5,12 +5,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
 import { registerUser } from '../redux/actions';
+import store from '../redux/store';
 
 
 /**
  * Provides a user interface to register an account with the web app
  */
-const Register = () => {
+const Register = (props) => {
 
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
@@ -31,7 +32,8 @@ const Register = () => {
         password: ${passwordText}\n
         passwordConfirm: ${passwordConfirmText}\n
         `)
-        registerUser({username:usernameText,password:passwordText,email:emailText})
+        props.registerUser({username:usernameText,password:passwordText,email:emailText})
+        console.log(store.getState());
 
     }
 
@@ -123,4 +125,5 @@ const mapStateToProps = (state) => ({
 })
 export default connect(
   mapStateToProps,
+  {registerUser}
 )(Register)
