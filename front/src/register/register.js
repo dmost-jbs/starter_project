@@ -6,9 +6,9 @@ import Col from 'react-bootstrap/Col'
 
 
 /**
- * Provides a user interface to login to the web app
+ * Provides a user interface to register an account with the web app
  */
-const Login = () => {
+const Register = () => {
 
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
@@ -118,4 +118,24 @@ const Login = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    // ... computed data from state and optionally ownProps
+  })
+  
+  const mapDispatchToProps = {
+    // ... normally is an object full of action creators
+  }
+  
+  // `connect` returns a new function that accepts the component to wrap:
+  const connectToStore = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+  // and that function returns the connected, wrapper component:
+  const ConnectedComponent = connectToStore(Component)
+  
+  // We normally do both in one step, like this:
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Register)

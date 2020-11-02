@@ -15,7 +15,7 @@ function App() {
       <NavigationBar />
       <Router>
         <Switch>
-        <Route path="/register">
+          <Route path="/register">
             <Register />
           </Route>
           <Route path="/login">
