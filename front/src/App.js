@@ -1,14 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
 import Interface from './main_display/user_interface.js';
-import NavigationBar from './main_display/navbar';
+import Login from './login/login.js';
+import NavigationBar from './navbar/navbar';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      
-      <NavigationBar/>
-      <Interface/>
-	  
+      <NavigationBar />
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/">
+            <Interface />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
