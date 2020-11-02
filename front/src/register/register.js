@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
+import { registerUser } from '../redux/actions';
 
 
 /**
@@ -30,8 +31,7 @@ const Register = () => {
         password: ${passwordText}\n
         passwordConfirm: ${passwordConfirmText}\n
         `)
-
-        // account registration logic here
+        registerUser({username:usernameText,password:passwordText,email:emailText})
 
     }
 
@@ -120,23 +120,7 @@ const Register = () => {
 }
 
 const mapStateToProps = (state) => ({
-    // ... computed data from state and optionally ownProps
-  })
-  
-  const mapDispatchToProps = {
-    // ... normally is an object full of action creators
-  }
-  
-  // `connect` returns a new function that accepts the component to wrap:
-  const connectToStore = connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-  // and that function returns the connected, wrapper component:
-  const ConnectedComponent = connectToStore(Register)
-  
-  // We normally do both in one step, like this:
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Register)
+})
+export default connect(
+  mapStateToProps,
+)(Register)

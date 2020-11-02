@@ -4,12 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
+import {loginUser} from '../redux/actions';
 
 
 /**
  * Provides a user interface to login to the web app
  */
-const Login = () => {
+const Login = (props) => {
 
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
@@ -21,12 +22,16 @@ const Login = () => {
      */
     const handleSubmit = event => {
         event.preventDefault();
+        
+
 
         console.log(`
         username: ${usernameText}\n
         password: ${passwordText}\n
         `)
         // login logic here
+
+        loginUser({usernameText,passwordText});
 
     }
 
@@ -83,23 +88,7 @@ const Login = () => {
 
 
 const mapStateToProps = (state) => ({
-    // ... computed data from state and optionally ownProps
   })
-  
-  const mapDispatchToProps = {
-    // ... normally is an object full of action creators
-  }
-  
-  // `connect` returns a new function that accepts the component to wrap:
-  const connectToStore = connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-  // and that function returns the connected, wrapper component:
-  const ConnectedComponent = connectToStore(Login)
-  
-  // We normally do both in one step, like this:
   export default connect(
     mapStateToProps,
-    mapDispatchToProps
   )(Login)
