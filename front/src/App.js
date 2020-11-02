@@ -1,6 +1,7 @@
 import './App.css';
 import Interface from './main_display/user_interface.js';
 import Login from './login/login.js';
+import Register from './register/register';
 import NavigationBar from './navbar/navbar';
 import {
   BrowserRouter as Router,
@@ -14,6 +15,9 @@ function App() {
       <NavigationBar />
       <Router>
         <Switch>
+        <Route path="/register">
+            <Register />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>

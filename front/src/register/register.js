@@ -12,20 +12,25 @@ const Login = () => {
 
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
+    const [passwordConfirmText, setPasswordConfirmText] = useState("");
+    const [emailText, setEmailText] = useState("");
 
 
     /**
-     * Handles login attempts to the app
+     * Handles account registration
      * @param {object} event 
      */
     const handleSubmit = event => {
         event.preventDefault();
 
         console.log(`
+        email: ${emailText}\n
         username: ${usernameText}\n
         password: ${passwordText}\n
+        passwordConfirm: ${passwordConfirmText}\n
         `)
-        // login logic here
+
+        // account registration logic here
 
     }
 
@@ -46,11 +51,36 @@ const Login = () => {
         setPasswordText(event.target.value);
     }
 
+    /**
+ * Handles updates to the password text form
+ * @param {object} event object from inputting text into the input form
+ */
+    const handlePasswordConfirm = event => {
+        setPasswordConfirmText(event.target.value);
+    }
+
+
+    /**
+ * Handles updates to the password text form
+ * @param {object} event object from inputting text into the input form
+ */
+    const handleEmail = event => {
+        setEmailText(event.target.value);
+    }
+
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <Container>
+                    <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
+                        <Col md="auto">
+                            <p>email:</p>
+                        </Col>
+                        <Col md="auto">
+                            <input type="text" onChange={handleEmail} value={emailText} />
+                        </Col>
+                    </Row>
                     <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
                         <Col md="auto">
                             <p>username:</p>
@@ -67,10 +97,18 @@ const Login = () => {
                             <input type="text" onChange={handlePassword} value={passwordText} />
                         </Col>
                     </Row>
+                    <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
+                        <Col md="auto">
+                            <p>password confirm:</p>
+                        </Col>
+                        <Col md="auto">
+                            <input type="text" onChange={handlePasswordConfirm} value={passwordConfirmText} />
+                        </Col>
+                    </Row>
                     <Row className="justify-content-md-center">
                         <Col md="auto">
                             <Button variant="primary" type="submit">
-                                Login
+                                Register
 							</Button>
                         </Col>
                     </Row>

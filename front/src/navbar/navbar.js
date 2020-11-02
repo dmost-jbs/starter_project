@@ -12,6 +12,9 @@ const NavigationBar = () => {
         <Navbar.Brand href="/login">
             Login
         </Navbar.Brand>
+        <Navbar.Brand href="/Register">
+            Register
+        </Navbar.Brand>
         </Navbar>
 	  )
 }
