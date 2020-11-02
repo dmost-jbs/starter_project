@@ -1,6 +1,4 @@
-import { * } from "./actionTypes";
-
-let nextTodoId = 0;
+import { LOGIN_USER, REGISTER_USER, LOGOUT_USER } from "./actionTypes";
 
 export const loginUser = (username,password) => ({
   type: LOGIN_USER,
