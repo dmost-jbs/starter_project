@@ -8,9 +8,17 @@ import axios from 'axios';
 const aws_post_url = "https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/post";
 const aws_get_url = "https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/get";
 
+/**
+ * Provides a user interface to interact with the node lambda server
+ */
 const Interface = () => {
 	const [inputText, setInputText] = useState("Input String");
 	const [serverText, setServerText] = useState("");
+	
+	/**
+	 * Handles POST requests to the node server
+	 * @param {object} event 
+	 */
 	const handleSubmit = event => {
 		event.preventDefault();
 
@@ -26,16 +34,18 @@ const Interface = () => {
 
 	}
 
+	/**
+	 * Handles GET requests to the node server
+	 * @param {object} event object from clicking the retrieve button 
+	 */
 	const handleGet = event => {
 		event.preventDefault();
-
 
 		axios.get(aws_get_url)
 		  .then(res=>{
 			console.log(res);
 			console.log(res.data);
 			setServerText(res.data.message)
-
 		  })
 		  .catch(err=>{
 			  alert(err);
@@ -43,6 +53,10 @@ const Interface = () => {
 
 	}
 
+	/**
+	 * Handles updates to the input text form
+	 * @param {object} event object from inputting text into the input form
+	 */
 	const handleChange = event => {
 		setInputText(event.target.value);
 	}
