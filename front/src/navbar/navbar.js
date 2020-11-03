@@ -12,8 +12,11 @@ const NavigationBar = () => {
         <Navbar.Brand href="/login">
             Login
         </Navbar.Brand>
-        <Navbar.Brand href="/Register">
+        <Navbar.Brand href="/register">
             Register
+        </Navbar.Brand>
+        <Navbar.Brand href="/account">
+            Account
         </Navbar.Brand>
         </Navbar>
 	  )

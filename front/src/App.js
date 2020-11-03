@@ -2,6 +2,7 @@ import './App.css';
 import Interface from './main_display/user_interface.js';
 import Login from './login/login.js';
 import Register from './register/register';
+import AccountInfo from './account_info/accountInfo'
 import NavigationBar from './navbar/navbar';
 import {
   BrowserRouter as Router,
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/account">
+            <AccountInfo />
           </Route>
           <Route path="/">
             <Interface />
