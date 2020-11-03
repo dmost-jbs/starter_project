@@ -1,6 +1,9 @@
-import { LOGIN_USER } from "../actionTypes";
+import { LOGIN_USER, LOGOUT_USER } from "../actionTypes";
 
 const initialState = {
+    username:undefined,
+    password:undefined,
+    loggedIn:false
 };
 
 const login = (state = initialState, action) => {
@@ -10,12 +13,21 @@ const login = (state = initialState, action) => {
             return {
                 ...state,
                 'username':username,
-                'password':password
+                'password':password,
+                'loggedIn':true
             };
         }
-        default: {
-            return state;
+        case LOGOUT_USER: {
+            return {
+                'username': undefined,
+                'password': undefined,
+                'loggedIn': false
+            }
         }
+        default: 
+            return state;
+        
+        
     }
 };
 
