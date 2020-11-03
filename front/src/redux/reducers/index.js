@@ -1,5 +1,4 @@
-import { combineReducers } from "redux";
-import loginReducer from "./loginReducer";
+import { combineReducers } from 'redux';
+import loginReducer from './loginReducer';
 
-
-export default combineReducers({accountInfo:loginReducer});
+export default combineReducers({ accountInfo: loginReducer });

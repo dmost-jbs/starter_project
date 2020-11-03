@@ -1,13 +1,15 @@
+import React from 'react';
 import './App.css';
-import Interface from './main_display/user_interface.js';
-import Login from './login/login.js';
-import AccountInfo from './account_info/accountInfo'
-import NavigationBar from './navbar/navbar';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
+import Interface from './main_display/user_interface';
+import Login from './login/login';
+import AccountInfo from './account_info/accountInfo';
+import NavigationBar from './navbar/navbar';
+
 function App() {
   return (
     <div className="App">
