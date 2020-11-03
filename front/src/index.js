@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux'
-import store from './redux/store'
+import storeInfo from './redux/store'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { PersistGate } from 'redux-persist/integration/react'
 
+const store = storeInfo.store;
 
 store.subscribe(() =>
   console.log('State after dispatch: ', store.getState())
@@ -13,7 +15,9 @@ store.subscribe(() =>
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={storeInfo.persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );
