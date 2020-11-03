@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
 import {loginUser} from '../redux/actions';
+import { Redirect } from 'react-router'
 
 /**
  * Provides a user interface to login to the web app
@@ -13,6 +14,7 @@ const Login = (props) => {
 
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
+    const [redirect, setRedirect] = useState(false);
 
 
     /**
@@ -23,7 +25,7 @@ const Login = (props) => {
         event.preventDefault();
 
         props.loginUser(usernameText,passwordText);
-
+        setRedirect(true);
     }
 
 
@@ -43,38 +45,42 @@ const Login = (props) => {
         setPasswordText(event.target.value);
     }
 
-
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <Container>
-                    <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
-                        <Col md="auto">
-                            <p>username:</p>
-                        </Col>
-                        <Col md="auto">
-                            <input type="text" onChange={handleUsername} value={usernameText} />
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
-                        <Col md="auto">
-                            <p>password:</p>
-                        </Col>
-                        <Col md="auto">
-                            <input type="text" onChange={handlePassword} value={passwordText} />
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-md-center">
-                        <Col md="auto">
-                            <Button variant="primary" type="submit">
-                                Login
-							</Button>
-                        </Col>
-                    </Row>
-                </Container>
-            </form>
-        </div>
-    )
+    if(redirect){
+        return <Redirect to='/account'/>;
+    }
+    else{
+        return (
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <Container>
+                        <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
+                            <Col md="auto">
+                                <p>username:</p>
+                            </Col>
+                            <Col md="auto">
+                                <input type="text" onChange={handleUsername} value={usernameText} />
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
+                            <Col md="auto">
+                                <p>password:</p>
+                            </Col>
+                            <Col md="auto">
+                                <input type="text" onChange={handlePassword} value={passwordText} />
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col md="auto">
+                                <Button variant="primary" type="submit">
+                                    Login
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                </form>
+            </div>
+        )
+    }
 }
 
 

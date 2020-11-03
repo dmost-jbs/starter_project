@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
 import { useSelector } from 'react-redux'
 import { logoutUser } from '../redux/actions';
+import { Redirect } from 'react-router'
 
 
 /**
@@ -51,9 +52,7 @@ const AccountInfo = (props) => {
     }
     else {
         return (
-            <div>
-                <h1>Please log in</h1>
-            </div>
+            <Redirect to='/login'/>
         )
     }
 }
