@@ -7,6 +7,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
+store.subscribe(() =>
+  console.log('State after dispatch: ', store.getState())
+)
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
