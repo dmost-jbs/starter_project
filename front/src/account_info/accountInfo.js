@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
 import { useSelector } from 'react-redux'
+import { logoutUser } from '../redux/actions';
+
 
 /**
  * Provides a user interface to login to the web app
@@ -17,16 +19,13 @@ const AccountInfo = (props) => {
      */
     const handleLogout = event => {
         event.preventDefault();
-        console.log('redux logic here');
-        //redux logic here
-
+        props.logoutUser();
     }
 
     const accountInfo = useSelector(state => state.accountInfo)
     if (accountInfo.loggedIn) {
         return (
             <div>
-
                 <Container>
                     <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
                         <Col md="auto">
@@ -64,5 +63,5 @@ const mapStateToProps = (state) => ({
 })
 export default connect(
     mapStateToProps,
-    {}
+    {logoutUser}
 )(AccountInfo)
