@@ -16,3 +16,6 @@ POST data format: {
 
 
 The react front application accepts a user input string and has the ability to save that as the current message in the node server + aws s3 bucket. The user is also able to retrieve the latest message from the node server + aws s3 bucket. If there is no current message, then the retrieve button will render an error.
+
+
+Also includes a simple user account management system on the frontend via redux.
