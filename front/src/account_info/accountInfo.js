@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
@@ -9,8 +10,19 @@ import { useSelector } from 'react-redux'
  * Provides a user interface to login to the web app
  */
 const AccountInfo = (props) => {
+
+    /**
+     * Handles logout button
+     * @param {object} event 
+     */
+    const handleLogout = event => {
+        event.preventDefault();
+        console.log('redux logic here');
+        //redux logic here
+
+    }
+
     const accountInfo = useSelector(state => state.accountInfo)
-    console.log(accountInfo);
     if (accountInfo.loggedIn) {
         return (
             <div>
@@ -24,6 +36,13 @@ const AccountInfo = (props) => {
                     <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
                         <Col md="auto">
                             <p>password: {accountInfo.password}</p>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
+                        <Col md="auto">
+                            <Button variant="primary" type="button" onClick={handleLogout}>
+                                Logout
+							</Button>
                         </Col>
                     </Row>
                 </Container>
