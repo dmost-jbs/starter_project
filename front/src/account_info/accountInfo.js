@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
+import { useSelector } from 'react-redux'
+
 
 
 /**
@@ -11,34 +12,39 @@ import { connect } from "react-redux";
  */
 const AccountInfo = (props) => {
 
-    const [usernameText, setUsernameText] = useState("");
-    const [passwordText, setPasswordText] = useState("");
-    const [emailText, setEmailText] = useState("");
+
+    const accountInfo = useSelector(state => state.accountInfo)
+    console.log(accountInfo);
 
 
-    return (
-        <div>
 
-            <Container>
-                <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
-                    <Col md="auto">
-                        <p>username: {usernameText}</p>
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
-                    <Col md="auto">
-                        <p>password: {passwordText}</p>
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
-                    <Col md="auto">
-                        <p>email: {emailText}</p>
-                    </Col>
-                </Row>
-            </Container>
+    if(accountInfo.loggedIn){
+        return (
+            <div>
 
-        </div>
-    )
+                <Container>
+                    <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
+                        <Col md="auto">
+                            <p>username: {accountInfo.username}</p>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-md-center" style={{ marginBottom: 30 }}>
+                        <Col md="auto">
+                            <p>password: {accountInfo.password}</p>
+                        </Col>
+                    </Row>
+                </Container>
+
+            </div>
+        )
+    }
+    else{
+        return (
+            <div>
+                <h1>Please log in</h1>
+            </div>
+        )
+    }
 }
 
 

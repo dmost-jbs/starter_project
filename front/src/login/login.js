@@ -5,8 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
 import {loginUser} from '../redux/actions';
-import store from '../redux/store';
-
 
 /**
  * Provides a user interface to login to the web app
@@ -23,17 +21,8 @@ const Login = (props) => {
      */
     const handleSubmit = event => {
         event.preventDefault();
-        
 
-
-        console.log(`
-        username: ${usernameText}\n
-        password: ${passwordText}\n
-        `)
-        // login logic here
-
-        props.loginUser({usernameText,passwordText});
-        console.log(store.getState());
+        props.loginUser(usernameText,passwordText);
 
     }
 
