@@ -1,8 +1,6 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar'
 
-
-
 const NavigationBar = () => {
 	  return (
         <Navbar bg="dark" variant="dark" style={{marginBottom:100}}>

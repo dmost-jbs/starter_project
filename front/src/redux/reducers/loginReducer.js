@@ -26,8 +26,6 @@ const login = (state = initialState, action) => {
         }
         default: 
             return state;
-        
-        
     }
 };
 

@@ -5,20 +5,13 @@ import Col from 'react-bootstrap/Col'
 import { connect } from "react-redux";
 import { useSelector } from 'react-redux'
 
-
-
 /**
  * Provides a user interface to login to the web app
  */
 const AccountInfo = (props) => {
-
-
     const accountInfo = useSelector(state => state.accountInfo)
     console.log(accountInfo);
-
-
-
-    if(accountInfo.loggedIn){
+    if (accountInfo.loggedIn) {
         return (
             <div>
 
@@ -38,7 +31,7 @@ const AccountInfo = (props) => {
             </div>
         )
     }
-    else{
+    else {
         return (
             <div>
                 <h1>Please log in</h1>
