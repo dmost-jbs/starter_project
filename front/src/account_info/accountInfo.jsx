@@ -12,16 +12,16 @@ import { logoutUser } from '../redux/actions';
  * Provides a user interface to login to the web app
  */
 const AccountInfo = (props) => {
+  const { accountInfo, logoutUser: logoutUserAction } = props;
   /**
      * Handles logout button
      * @param {object} event
      */
   const handleLogout = (event) => {
     event.preventDefault();
-    props.logoutUser();
+    logoutUserAction();
   };
 
-  const accountInfo = useSelector((state) => state.accountInfo);
   if (accountInfo.loggedIn) {
     return (
       <div>
@@ -50,7 +50,6 @@ const AccountInfo = (props) => {
             </Col>
           </Row>
         </Container>
-
       </div>
     );
   }
@@ -62,9 +61,16 @@ const AccountInfo = (props) => {
 
 AccountInfo.propTypes = {
   logoutUser: PropTypes.func.isRequired,
+  logoutUserAction: PropTypes.func.isRequired,
+  accountInfo: PropTypes.shape({
+    username: PropTypes.string,
+    password: PropTypes.string,
+    loggedIn: PropTypes.bool,
+  }),
 };
 
 const mapStateToProps = () => ({
+  accountInfo: useSelector((state) => state.accountInfo),
 });
 export default connect(
   mapStateToProps,
