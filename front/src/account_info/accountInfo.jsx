@@ -61,12 +61,11 @@ const AccountInfo = (props) => {
 
 AccountInfo.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  logoutUserAction: PropTypes.func.isRequired,
   accountInfo: PropTypes.shape({
     username: PropTypes.string,
     password: PropTypes.string,
     loggedIn: PropTypes.bool,
-  }),
+  }).isRequired,
 };
 
 const mapStateToProps = () => ({
