@@ -13,9 +13,10 @@ export class ServerStack extends cdk.Stack {
       handler: 'textApi.handler'
     })
 
-    new s3.Bucket(this, 'MostStarterProject', {
+    const textBucket = new s3.Bucket(this, 'MostStarterProject', {
       versioned: true
     });
+    textBucket.grantRead(textApi);
 
     new apigw.LambdaRestApi(this, 'Endpoint', {
       handler: textApi
