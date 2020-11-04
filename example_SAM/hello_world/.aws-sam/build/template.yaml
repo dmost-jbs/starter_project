@@ -16,16 +16,21 @@ Resources:
       Handler: app.lambdaHandler
       Runtime: nodejs12.x
       Events:
-        HelloWorld:
+        GetObject:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /api/get
             Method: get
+        PutObject:
+          Type: Api
+          Properties:
+            Path: /api/post
+            Method: post
 Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/
   HelloWorldFunction:
     Description: Hello World Lambda Function ARN
     Value:
