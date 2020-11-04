@@ -1,8 +1,6 @@
-import * as sns from '@aws-cdk/aws-sns';
-import * as subs from '@aws-cdk/aws-sns-subscriptions';
-import * as sqs from '@aws-cdk/aws-sqs';
 import * as cdk from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
+import * as s3 from '@aws-cdk/aws-s3'
 import * as apigw from '@aws-cdk/aws-apigateway';
 
 export class ServerStack extends cdk.Stack {
@@ -14,6 +12,10 @@ export class ServerStack extends cdk.Stack {
       code: lambda.Code.fromAsset('lambda'),
       handler: 'textApi.handler'
     })
+
+    new s3.Bucket(this, 'MostStarterProject', {
+      versioned: true
+    });
 
     new apigw.LambdaRestApi(this, 'Endpoint', {
       handler: textApi
