@@ -6,13 +6,5 @@ import * as cdk from '@aws-cdk/core';
 export class ServerStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-
-    const queue = new sqs.Queue(this, 'ServerQueue', {
-      visibilityTimeout: cdk.Duration.seconds(300)
-    });
-
-    const topic = new sns.Topic(this, 'ServerTopic');
-
-    topic.addSubscription(new subs.SqsSubscription(queue));
   }
 }
