@@ -1,6 +1,8 @@
-const cdk = require('@aws-cdk/core');
+const core = require('@aws-cdk/core');
+const s3 = require('@aws-cdk/aws-s3');
 
-class TemplateStack extends cdk.Stack {
+
+class TemplateStack extends core.Stack {
   /**
    *
    * @param {cdk.Construct} scope
@@ -11,6 +13,9 @@ class TemplateStack extends cdk.Stack {
     super(scope, id, props);
 
     // The code that defines your stack goes here
+    new s3.Bucket(this, 'MostStarterProject', {
+      versioned: true
+    });
   }
 }
 
