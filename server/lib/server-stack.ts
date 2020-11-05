@@ -19,25 +19,14 @@ export class ServerStack extends cdk.Stack {
       versioned: true
     });
 
-    const role = new iam.Role(this, 'Role', {
-      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com')   // required
-    });
-
-    role.addToPolicy(new iam.PolicyStatement({
+    textApi.addToRolePolicy(new iam.PolicyStatement({
       effect: iam.Effect.DENY,
       resources: [textBucket.bucketArn],
       actions: ['s3:GetObject'],
       conditions: {StringEquals: {
         'ec2:AuthorizedService': 'codebuild.amazonaws.com'
     }}}));
-
-    textBucket.addToResourcePolicy(new iam.PolicyStatement({
-      effect: iam.Effect.ALLOW,
-      actions: ['s3:GetObject'],
-      resources: [textApi.functionArn],
-      principals: [role]
-    }));
-    
+    textApi.addToRolePolicy
 
     new apigw.LambdaRestApi(this, 'Endpoint', {
       handler: textApi
