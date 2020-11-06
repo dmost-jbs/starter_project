@@ -23,7 +23,10 @@ export class ServerStack extends cdk.Stack {
     textBucket.grantReadWrite(textApi);
 
     new apigw.LambdaRestApi(this, 'Endpoint', {
-      handler: textApi
+      handler: textApi,
+      defaultCorsPreflightOptions: {
+        allowOrigins: apigw.Cors.ALL_ORIGINS
+      }
     });
   }
 }

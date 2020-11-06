@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
-const awsPostUrl = 'https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/post';
-const awsGetUrl = 'https://04r6i3pt7d.execute-api.us-east-1.amazonaws.com/Prod/api/get';
+const awsPostUrl = 'https://qk5eenmmd5.execute-api.us-east-1.amazonaws.com/prod/';
+const awsGetUrl = 'https://qk5eenmmd5.execute-api.us-east-1.amazonaws.com/prod/';
 
 /**
  * Provides a user interface to interact with the node lambda server
@@ -23,7 +23,7 @@ const Interface = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post(awsPostUrl, { text: inputText })
+    axios.post(awsPostUrl, { message: inputText })
       .then((res) => {
         setStatus(`message ${res.data} successfully saved on server`);
       })
