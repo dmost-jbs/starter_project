@@ -11,8 +11,7 @@ export class ServerStack extends cdk.Stack {
     const textApi = new lambda.Function(this,'TextApiHandler', {
       runtime: lambda.Runtime.NODEJS_10_X,
       code: lambda.Code.fromAsset('lambda'),
-      handler: 'textApi.handler',
-      //role:role
+      handler: 'lambdaHandler.handler',
     })
     
     const textBucket = new s3.Bucket(this, 'MostStarterProject', {

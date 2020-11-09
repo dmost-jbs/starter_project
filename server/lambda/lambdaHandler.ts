@@ -1,5 +1,4 @@
 let response;
-declare var require: any;
 declare var exports: any;
 
 
