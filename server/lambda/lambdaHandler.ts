@@ -6,17 +6,27 @@ declare var exports: any;
 
 // dependencies
 const AWS = require('aws-sdk');
+interface Event {
+    body: string,
+    httpMethod: String
+}
+interface Response {
+    statusCode: number,
+    headers: Object,
+    body: String
+}
 
 // get reference to S3 client
 const s3 = new AWS.S3()
-exports.handler = async function (event: Object) {
-    response = {
+exports.handler = async function (event: Event) {
+    let response : Response = {
         'statusCode': 200,
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
-        }
+        },
+        body: ''
     }
     try {
         // handles post requests
