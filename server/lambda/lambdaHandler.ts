@@ -1,24 +1,24 @@
-let response;
-declare var exports: any;
-
-
-
 // dependencies
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
 interface Event {
     body: string,
-    httpMethod: String
+    httpMethod: string
+}
+interface Headers {
+    "Access-Control-Allow-Origin": string,
+    "Access-Control-Allow-Headers": string,
+    "Access-Control-Allow-Methods": string
 }
 interface Response {
     statusCode: number,
-    headers: Object,
-    body: String
+    headers: Headers,
+    body: string
 }
 
 // get reference to S3 client
 const s3 = new AWS.S3()
 exports.handler = async function (event: Event) {
-    let response : Response = {
+    const response : Response = {
         'statusCode': 200,
         headers: {
             "Access-Control-Allow-Origin": "*",
@@ -30,8 +30,8 @@ exports.handler = async function (event: Event) {
     try {
         // handles post requests
         if (event.httpMethod == 'POST') {
-            let message = JSON.parse(event.body)['message'] // message gathered from post request
-            let params = {
+            const message = JSON.parse(event.body)['message'] // message gathered from post request
+            const params = {
                 Body: message, // text to go inside bucket object
                 Bucket: 'serverstack-moststarterprojectc30452a5-vua9yh3hifcs', // bucket name
                 Key: "message.txt" // object name within bucket
@@ -53,13 +53,18 @@ exports.handler = async function (event: Event) {
         }
         // handles get requests
         if (event.httpMethod == 'GET') {
-            let Bucket = 'serverstack-moststarterprojectc30452a5-vua9yh3hifcs'; // bucket name
-            let Key = 'message.txt'; // object name in bucket
+            const Bucket = 'serverstack-moststarterprojectc30452a5-vua9yh3hifcs'; // bucket name
+            const Key = 'message.txt'; // object name in bucket
             try {
                 const data = await s3.getObject({ Bucket, Key }).promise(); // get the object from s3
-                response['body'] = JSON.stringify({
-                    'message': data.Body.toString('ascii'),
-                });
+                if(data.Body == undefined){
+                    response['body'] = 'message not found';
+                }
+                else{
+                    response['body'] = JSON.stringify({
+                        'message': data.Body.toString('ascii'),
+                    });
+                }
                 return response
             }
             catch (err) {
